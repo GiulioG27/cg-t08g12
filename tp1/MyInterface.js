@@ -19,6 +19,11 @@ export class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
+        this.gui.add(this.scene,'displayDiamond').name('Display Diamond'); //how is this connected to the boolean value defined in myscene? by the name?
+        this.gui.add(this.scene,'displayTriangle').name('Display Triangle');
+        this.gui.add(this.scene,'displayParallelogram').name('Display Parallelogram');
+        this.gui.add(this.scene,'displayTriangleSmall').name('Display TriangleSmall');
+        this.gui.add(this.scene,'displayTriangleBig').name('Display TriangleBig');
 
         //Slider element in GUI
         this.gui.add(this.scene, 'scaleFactor', 0.1, 5).name('Scale Factor');
