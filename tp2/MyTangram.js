@@ -23,14 +23,14 @@ export class MyTangram extends CGFobject {
 
     display() {
     this.scene.pushMatrix();
-    var matrixDiamondTranslate=[ //non ho ben capito come si inizializzano le matrici
+    var matrixDiamondTranslate=[ 
         1, 0, 0, 0,
         0, 1, 0, 0,
         0, 0, 1, 0,
         1, 0, 0, 1
     ]
 
-    this.scene.multMatrix(matrixDiamondTranslate); //ma così la traslazione si applica a tutto: è giusto applicarla dopo aver "displayed" gli altri oggetti
+    this.scene.multMatrix(matrixDiamondTranslate); 
     this.diamond.display();
 
     this.scene.popMatrix();
