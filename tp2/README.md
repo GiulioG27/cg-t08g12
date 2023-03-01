@@ -13,3 +13,7 @@
 
 
 ![Screenshot 1](screenshots/cg-t08g12-tp2-2.png);
+
+-Creating the cube using the MyQuad class I notice that the resulting illumination is different. The faces of the cube are better defined and more visible, and unlike in the first cube, each face if observed from a specific point of view receives light.
+
+![Screenshot 1](screenshots/cg-t08g12-tp2-3.png);
