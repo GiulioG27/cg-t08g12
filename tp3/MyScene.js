@@ -4,6 +4,7 @@ import { MyCone } from "./MyCone.js";
 import { MyPlane } from "./MyPlane.js";
 import { MyTangram } from "./MyTangram.js";
 import { MyUnitCube } from "./MyUnitCube.js";
+import { MyPrism } from "./MyPrism.js";
 
 /**
 * MyScene
@@ -34,6 +35,7 @@ export class MyScene extends CGFscene {
         this.pyramid = new MyPyramid(this, 3, 1);
         this.tangram = new MyTangram(this);
         this.unitCube = new MyUnitCube(this);
+        this.prism = new MyPrism(this,8,20);
 
         this.objects = [this.plane, this.pyramid, this.cone];
 
@@ -51,6 +53,7 @@ export class MyScene extends CGFscene {
         this.displayNormals = false;
         this.objectComplexity = 0.5;
         this.scaleFactor = 2.0;
+        this.displayPrism =true;
 
     }
     initLights() {
@@ -145,7 +148,7 @@ export class MyScene extends CGFscene {
 
         this.updateCustomMaterial();
 
-        //Wood (should I put some values for the ambient)
+        //Wood 
         this.material4 = new CGFappearance(this);
         this.material4.setAmbient(0.588, 0.294, 0, 1.0);
         this.material4.setDiffuse(0.588, 0.294, 0, 1.0);
@@ -186,22 +189,22 @@ export class MyScene extends CGFscene {
         this.pushMatrix();
         this.materials[this.selectedMaterial].apply();
         
-        
-        
-        
         //if the normal vectors are not defined in the object class
         //the default ones have as components (1,1,1)
         if (this.displayNormals){
             this.objects[this.selectedObject].enableNormalViz();
             this.unitCube.enableNormalViz();
             this.tangram.enableNormalViz();
+            this.prism.enableNormalViz();
         }
         else{
             this.objects[this.selectedObject].disableNormalViz();
-            this.unitCube.disableNormalViz()
-            this.tangram.disableNormalViz()
+            this.unitCube.disableNormalViz();
+            this.tangram.disableNormalViz();
+            this.prism.disableNormalViz();
         }
         if(this.displayUnitCube) this.unitCube.display();
+        if(this.displayPrism) this.prism.display();
         
         if(this.displaySelectedObject) this.objects[this.selectedObject].display();
         this.popMatrix();

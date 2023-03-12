@@ -26,7 +26,7 @@ export class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'selectedObject', this.scene.objectIDs).name('Selected Object').onChange(this.scene.updateObjectComplexity.bind(this.scene));//not clear yet what this updatecomplexity does (it probably keeps updaated the object complexity when the object chosen is a differnt one as it is changable)
         this.gui.add(this.scene, 'displayTangram').name('Display Tangram');
         this.gui.add(this.scene, 'displayUnitCube').name('Display UnitCube');
-
+        this.gui.add(this.scene,'displayPrism').name('Display Prism');
         this.gui.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
         this.gui.add(this.scene, 'objectComplexity', 0.01, 1.0).onChange(this.scene.updateObjectComplexity.bind(this.scene));
 
