@@ -5,6 +5,7 @@ import { MyPlane } from "./MyPlane.js";
 import { MyTangram } from "./MyTangram.js";
 import { MyUnitCube } from "./MyUnitCube.js";
 import { MyPrism } from "./MyPrism.js";
+import { MyCylinder } from "./MyCylinder.js";
 
 /**
 * MyScene
@@ -36,6 +37,7 @@ export class MyScene extends CGFscene {
         this.tangram = new MyTangram(this);
         this.unitCube = new MyUnitCube(this);
         this.prism = new MyPrism(this,8,20);
+        this.cylinder = new MyCylinder(this,8,20);
 
         this.objects = [this.plane, this.pyramid, this.cone];
 
@@ -46,14 +48,15 @@ export class MyScene extends CGFscene {
         this.selectedObject = 0;
         this.globalAmbient=0.3;
         this.selectedMaterial = 0;
-        this.displayTangram=true;
-        this.displayUnitCube=true;
-        this.displaySelectedObject=true;
+        this.displayTangram=false;
+        this.displayUnitCube=false;
+        this.displaySelectedObject=false;
         this.displayAxis = true;
         this.displayNormals = false;
         this.objectComplexity = 0.5;
         this.scaleFactor = 2.0;
-        this.displayPrism =true;
+        this.displayPrism =false;
+        this.displayCylinder =true;
 
     }
     initLights() {
@@ -196,15 +199,18 @@ export class MyScene extends CGFscene {
             this.unitCube.enableNormalViz();
             this.tangram.enableNormalViz();
             this.prism.enableNormalViz();
+            this.cylinder.enableNormalViz();
         }
         else{
             this.objects[this.selectedObject].disableNormalViz();
             this.unitCube.disableNormalViz();
             this.tangram.disableNormalViz();
             this.prism.disableNormalViz();
+            this.cylinder.disableNormalViz();
         }
         if(this.displayUnitCube) this.unitCube.display();
         if(this.displayPrism) this.prism.display();
+        if(this.displayCylinder) this.cylinder.display();
         
         if(this.displaySelectedObject) this.objects[this.selectedObject].display();
         this.popMatrix();

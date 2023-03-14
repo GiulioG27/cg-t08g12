@@ -31,7 +31,7 @@ export class MyPyramid extends CGFobject {
             var ca=Math.cos(ang);
             var caa=Math.cos(ang+alphaAng);
 
-            this.vertices.push(0,1,0);
+            this.vertices.push(0,1,0); //the top vertex is the same for all the faces
             this.vertices.push(ca, 0, -sa);
             this.vertices.push(caa, 0, -saa);
 

@@ -15,3 +15,11 @@ I've had some issues understanding where to call each material but that was solv
 I then applied the "custom" material only to the diamond contained in the tangram.
 
 ![Screenshot 2](screenshots/cg-t08g12-tp3-2.png);
+
+-The shading obtained through the requested implementation is similar to the "constant shading" with the difference of the color being calculated in two points of each face rather than one, and then applied to the entire face.
+
+![Screenshot 3](screenshots/cg-t08g12-tp3-3.png);
+
+-I have created the cylinder by instantiating each vertex and its corresponding normal vector only once. The edges actually look a lot less evident if compared to the prism, especially when the number of slices increases.
+
+![Screenshot 3](screenshots/cg-t08g12-tp3-4.png);
