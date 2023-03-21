@@ -1,6 +1,7 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MyQuad } from "./MyQuad.js";
 import { MyTangram } from "./MyTangram.js";
+import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
  * MyScene
@@ -25,11 +26,13 @@ export class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
+        
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.quad = new MyQuad(this);
         this.tangram= new MyTangram(this);
-
+        
         //------ Applied Material
         this.quadMaterial = new CGFappearance(this);
         this.quadMaterial.setAmbient(0.1, 0.1, 0.1, 1);
@@ -53,13 +56,22 @@ export class MyScene extends CGFscene {
         this.texture2 = new CGFtexture(this, 'images/floor.png');
         this.texture3 = new CGFtexture(this, 'images/window.jpg');
         //-------
+        //------ Textures for the cube
+        this.sideTexture = new CGFtexture(this, 'images/mineSide.png');
+        this.topTexture = new CGFtexture(this,'images/mineTop.png');
+        this.bottomTexture= new CGFtexture(this, 'images/mineBottom.png');
+        
+        this.cubeTex=[this.sideTexture,this.topTexture,this.bottomTexture];
+        //-------
+        this.unitCubeQuad= new MyUnitCubeQuad(this,this.cubeTex[1],this.cubeTex[0],this.cubeTex[0],this.cubeTex[0],this.cubeTex[0],this.cubeTex[2]);
 
         //-------Objects connected to MyInterface
         this.displayAxis = true;
         this.scaleFactor = 5;
         this.selectedTexture = -1;   
-        this.displayQuad= true;  
-        this.displayTangram= false;   
+        this.displayQuad= false;  
+        this.displayTangram= false; 
+        this.displayUnitCubeQuad=false;  
         this.wrapS = 0;
         this.wrapT = 0;
 
@@ -92,8 +104,8 @@ export class MyScene extends CGFscene {
     }
 
     //Function that resets selected texture in quadMaterial
-    updateAppliedTexture() {
-        this.quadMaterial.setTexture(this.textures[this.selectedTexture]);
+    updateAppliedTexture(texture) {
+        this.quadMaterial.setTexture(texture);
     }
 
     //Function that updates wrapping mode in quadMaterial
@@ -128,15 +140,17 @@ export class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
         if(this.displayTangram) this.tangram.display();
-        this.quadMaterial.apply();
+        
+        //this.quadMaterial.apply();
 
         // Default texture filtering in WebCGF is LINEAR. 
         // Uncomment next line for NEAREST when magnifying, or 
         // add a checkbox in the GUI to alternate in real time
         
-        // this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
+        
 
-        if(this.displayQuad) this.quad.display();
+        //if(this.displayQuad) this.quad.display();
+        if(this.displayUnitCubeQuad) this.unitCubeQuad.display();
 
         // ---- END Primitive drawing section
     }
